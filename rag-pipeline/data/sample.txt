@@ -1,0 +1,45 @@
+Introduction to Retrieval-Augmented Generation (RAG)
+
+Retrieval-Augmented Generation (RAG) is an AI framework that improves the quality of LLM-generated
+responses by grounding them in external, up-to-date knowledge. Unlike standard LLMs that rely
+purely on their training data, RAG systems retrieve relevant documents at inference time and
+condition the generation on that retrieved context.
+
+The RAG pipeline has three main components:
+1. Indexing: Documents are split into chunks, embedded into dense vectors, and stored in a vector database.
+2. Retrieval: A query is embedded and the top-k most similar chunks are fetched using similarity search.
+3. Generation: The retrieved chunks are passed as context to the LLM, which produces a grounded answer.
+
+FAISS — Facebook AI Similarity Search
+
+FAISS is an open-source library developed by Meta AI Research for efficient similarity search and
+clustering of dense vectors. It is widely used in RAG systems as the vector store because it is:
+- Extremely fast: Optimised C++ with GPU support
+- Scalable: Handles billions of vectors
+- Flexible: Supports exact (IndexFlatL2, IndexFlatIP) and approximate (IVF, HNSW) indexes
+
+The IndexFlatIP (inner product) index is ideal for cosine similarity when embeddings are L2-normalised.
+
+Sentence Transformers
+
+Sentence Transformers are transformer models fine-tuned specifically for producing semantically
+meaningful sentence embeddings. The model all-MiniLM-L6-v2 is a popular lightweight choice:
+- 384-dimensional embeddings
+- Trained on 1B+ sentence pairs
+- Very fast: <50ms per batch on CPU
+
+These embeddings capture semantic meaning so that "automobile" and "car" are close in vector space.
+
+LangChain
+
+LangChain is an open-source framework for building applications powered by large language models.
+Its key contributions to RAG are:
+- Document Loaders: PDF, TXT, Web, CSV, and 50+ more formats
+- Text Splitters: RecursiveCharacterTextSplitter and others for smart chunking
+- Chains and Agents: Composable pipelines for complex retrieval workflows
+
+Groq LPU Inference
+
+Groq provides an API for ultra-fast LLM inference using their Language Processing Unit (LPU) hardware.
+The free tier supports models including Llama-3 8B and Mixtral 8x7B at extremely low latency,
+making it an ideal backend for RAG demos and prototypes without requiring a paid OpenAI subscription.
