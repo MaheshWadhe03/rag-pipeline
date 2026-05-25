@@ -1,4 +1,4 @@
-# 🔍 RAG Pipeline
+# RAG Pipeline
 
 > **Retrieval-Augmented Generation** from scratch — FAISS · LangChain · Sentence Transformers · Groq (Llama-3)
 
@@ -9,7 +9,9 @@
 
 ---
 
-## 📌 What is RAG?
+**Live Demo:** [ragpipelinemsw03.streamlit.app](https://ragpipelinemsw03.streamlit.app)
+
+## What is RAG?
 
 Standard LLMs hallucinate because they answer from fixed training weights. **RAG fixes this** by retrieving relevant documents at inference time and conditioning the answer on them — like letting the model "look things up" before speaking.
 
@@ -19,7 +21,7 @@ Query → Embed → FAISS Search → Top-K Chunks → LLM (Groq) → Grounded An
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 rag-pipeline/
@@ -92,7 +94,7 @@ streamlit run app.py
 
 ---
 
-## 🧪 Run Tests
+## Run Tests
 
 ```bash
 pytest tests/ -v
@@ -150,7 +152,7 @@ Edit `src/rag_pipeline.py` to change these.
 
 ---
 
-## 🚀 Extending This Project
+## Extending This Project
 
 | Idea | How |
 |---|---|
