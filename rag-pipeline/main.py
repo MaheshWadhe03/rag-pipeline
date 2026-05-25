@@ -17,21 +17,21 @@ def ingest(args):
     rag = RAGPipeline()
     rag.ingest(args.path)
     rag.save_index(INDEX_DIR)
-    print("✅ Ingestion complete.")
+    print("Ingestion complete.")
 
 
 def query(args):
     rag = RAGPipeline()
     rag.load_index(INDEX_DIR)
     result = rag.query(args.question, verbose=args.verbose)
-    print(f"\n💬 Answer:\n{result['answer']}")
-    print(f"\n📎 Sources: {', '.join(result['sources'])}")
+    print(f"\n Answer:\n{result['answer']}")
+    print(f"\n Sources: {', '.join(result['sources'])}")
 
 
 def chat(args):
     rag = RAGPipeline()
     rag.load_index(INDEX_DIR)
-    print("\n🤖 RAG Chat — type 'exit' to quit\n" + "─" * 40)
+    print("\n RAG Chat — type 'exit' to quit\n" + "─" * 40)
     while True:
         try:
             q = input("\nYou: ").strip()

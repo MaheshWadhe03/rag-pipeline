@@ -16,7 +16,7 @@ st.set_page_config(
 
 # ── Sidebar ────────────────────────────────────────────────────────────────────
 with st.sidebar:
-    st.title("⚙️ Settings")
+    st.title("Settings")
     api_key = st.text_input("Groq API Key", type="password",
                             value=os.getenv("GROQ_API_KEY", ""))
     top_k   = st.slider("Top-K chunks retrieved", 1, 8, 4)
@@ -33,7 +33,7 @@ with st.sidebar:
 """)
 
 # ── Main ───────────────────────────────────────────────────────────────────────
-st.title("🔍 RAG Pipeline Demo")
+st.title("RAG Pipeline Demo")
 st.caption("Upload documents → ask questions → get grounded answers with sources.")
 
 tab1, tab2 = st.tabs(["📄 Ingest Documents", "💬 Ask a Question"])
@@ -46,7 +46,7 @@ with tab1:
         type=["pdf", "txt", "md"],
         accept_multiple_files=True,
     )
-    if st.button("🚀 Ingest", disabled=not uploaded or not api_key):
+    if st.button("Ingest", disabled=not uploaded or not api_key):
         if not api_key:
             st.error("Enter your Groq API key in the sidebar.")
         else:
@@ -59,7 +59,7 @@ with tab1:
                 rag.ingest(str(tmp))
                 rag.save_index("index")
                 st.session_state["rag_ready"] = True
-            st.success(f"✅ Indexed {len(uploaded)} file(s)!")
+            st.success(f"Indexed {len(uploaded)} file(s)!")
 
 # ── Tab 2: Query ───────────────────────────────────────────────────────────────
 with tab2:
@@ -69,7 +69,7 @@ with tab2:
         st.warning("Enter your Groq API key in the sidebar first.")
     else:
         question = st.text_input("Your question", placeholder="What is the main topic of the document?")
-        if st.button("🔎 Search & Answer", disabled=not question):
+        if st.button("Search & Answer", disabled=not question):
             try:
                 rag = RAGPipeline(groq_api_key=api_key)
                 rag.load_index("index")
@@ -82,7 +82,7 @@ with tab2:
                 st.markdown(f"**📎 Sources:** `{'` · `'.join(result['sources'])}`")
 
                 if show_chunks:
-                    with st.expander("🔍 Retrieved Chunks"):
+                    with st.expander("Retrieved Chunks"):
                         for i, chunk in enumerate(result["retrieved"], 1):
                             st.markdown(f"**Chunk {i}** — score `{chunk['score']:.3f}` | `{chunk['source']}`")
                             st.code(chunk["text"], language=None)

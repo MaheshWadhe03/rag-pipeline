@@ -2,6 +2,8 @@
 RAG Pipeline — Core Module
 Retrieval-Augmented Generation using FAISS + HuggingFace + Groq/OpenAI
 Author: Mahesh (Max)
+
+Hands on to learn and implemant RAG, Chunking, Ingestion, Embedding ,Vector Storage etc.
 """
 
 import os
@@ -32,7 +34,7 @@ EMBED_MODEL   = "all-MiniLM-L6-v2"   # fast, free, 384-dim
 CHUNK_SIZE    = 500
 CHUNK_OVERLAP = 50
 TOP_K         = 4                     # retrieved chunks per query
-LLM_MODEL     = "llama3-8b-8192"     # Groq model (free tier)
+LLM_MODEL     = "llama-3.3-70b-versatile"     # Groq model (free tier)
 
 # ── RAG Pipeline ───────────────────────────────────────────────────────────────
 
@@ -61,7 +63,7 @@ class RAGPipeline:
                 "Set GROQ_API_KEY env var or pass groq_api_key= to RAGPipeline()"
             )
         self.llm = Groq(api_key=api_key)
-        print("✅ Pipeline ready.\n")
+        print("Pipeline ready.\n")
 
     # ── Ingestion ──────────────────────────────────────────────────────────────
 
@@ -105,7 +107,7 @@ class RAGPipeline:
         self.index.add(vectors)
         self.chunks.extend(texts)
         self.metadata.extend(metas)
-        print(f"🗄  FAISS index now has {self.index.ntotal} vector(s).\n")
+        print(f"FAISS index now has {self.index.ntotal} vector(s).\n")
 
     def save_index(self, dir_path: str = "index"):
         """Persist FAISS index + chunk store to disk."""
@@ -113,7 +115,7 @@ class RAGPipeline:
         faiss.write_index(self.index, f"{dir_path}/faiss.index")
         with open(f"{dir_path}/chunks.json", "w") as f:
             json.dump({"chunks": self.chunks, "metadata": self.metadata}, f)
-        print(f"💾 Index saved to '{dir_path}/'")
+        print(f"Index saved to '{dir_path}/'")
 
     def load_index(self, dir_path: str = "index"):
         """Reload a previously saved index."""
@@ -166,7 +168,7 @@ Answer:"""
         prompt    = self._build_prompt(question, retrieved)
 
         if verbose:
-            print(f"\n🔍 Retrieved {len(retrieved)} chunk(s):")
+            print(f"\n Retrieved {len(retrieved)} chunk(s):")
             for i, r in enumerate(retrieved, 1):
                 print(f"  [{i}] score={r['score']:.3f} | {r['source']}")
                 print(f"      {r['text'][:120]}…\n")
