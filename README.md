@@ -11,6 +11,14 @@
 
 **Live Demo:** [ragpipelinemsw03.streamlit.app](https://ragpipelinemsw03.streamlit.app)
 
+##  Demo
+
+**Upload & Ingest Documents**
+![Upload Screen](demo1.png)
+
+**Ask Questions & Get Grounded Answers**
+![Query Screen](demo2.png)
+
 ## What is RAG?
 
 Standard LLMs hallucinate because they answer from fixed training weights. **RAG fixes this** by retrieving relevant documents at inference time and conditioning the answer on them — like letting the model "look things up" before speaking.
