@@ -112,7 +112,7 @@ All tests mock the LLM — **no API key needed to run the test suite.**
 
 ---
 
-## 📖 How It Works (Step by Step)
+##  How It Works (Step by Step)
 
 ### Step 1 — Ingest
 
@@ -172,7 +172,7 @@ Edit `src/rag_pipeline.py` to change these.
 
 ---
 
-## 📚 References
+##  References
 
 - Lewis et al., [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401) (2020)
 - Johnson et al., [Billion-scale similarity search with GPUs (FAISS)](https://arxiv.org/abs/1702.08734) (2017)
@@ -180,13 +180,13 @@ Edit `src/rag_pipeline.py` to change these.
 
 ---
 
-## 👤 Author
+##  Author
 
-**Mahesh (Max)** — BTech CSE (AI & ML)  
+**Mahesh (Max)**  
 [LinkedIn](https://linkedin.com) · [GitHub](https://github.com)
 
 ---
 
-## 📄 License
+##  License
 
 MIT — free to use, modify, and distribute.
